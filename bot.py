@@ -149,6 +149,9 @@ if __name__ == "__main__":
     models = ["gpt-3.5-turbo-0613", "gpt-4-0613"]
     from os import getenv
     API_KEY = getenv("OPENAI_API_KEY")
+    if not API_KEY:
+        print("Please set the OPENAI_API_KEY environment variable")
+        exit()
     bot = ChatBot(API_KEY, functions.list, models[0])
     while True:
         try:
