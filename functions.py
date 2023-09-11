@@ -110,34 +110,7 @@ list.append({
     }
 })
 
-# list.append({
-#     "name": "get_weather",
-#     "description": "Get the weather for a location. Returns a JSON object with the weather, temperature and wind speed.",
-#     "parameters": {
-#         "type": "object",
-#         "properties": {
-#             "city": {
-#                 "type": "string",
-#                 "description": "The city formatted for OpenWeatherMap API, e.g. London"
-#             },
-#             "country": {
-#                 "type": "string",
-#                 "description": "The country code formatted for OpenWeatherMap API, e.g. UK"
-#             },
-#             "units": {
-#                 "type": "string",
-#                 "enum": ["imperial", "metric", "standard"],
-#                 "description": "The temperature unit to use. Imperial is Fahrenheit, metric is Celcius and standard is Kelvin. Defaults to metric if not provided."
-#             }
-#         },
-#         "required": ["city", "country"]
-#     }
-# })
-
-# def exit_conversation(args: Dict = None):
-#     del args
-#     exit()
-
+# Fake exit conversation function for saving the conversation history to a file before exiting in bot.py
 list.append({
     "name": "exit_conversation",
     "description": "Exit the conversation",

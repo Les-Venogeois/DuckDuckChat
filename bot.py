@@ -51,10 +51,7 @@ When you search the web via the "search" function, you must call it minimum once
                     functions=self.functions
                 )
             result = completion.choices[0].message
-            # if result.content is not None and getattr(result, 'function_call', None) is not None:
-            #     print(f"Bot: {result.content}")
-            #     return str(result)
-            if result.content:  # Removed elif
+            if result.content:
                 return result.content
             else:
                 return str(result)
@@ -95,11 +92,6 @@ When you search the web via the "search" function, you must call it minimum once
             print(f"Unable to parse result: {e}")
             return result
         
-    # Deprecated
-    def clear_conversation(self) -> None:
-        """Clear the conversation history"""        
-        self.messages = [{"role": "system", "content": self.system_message}]
-
     def execute_function(self, function_name: str, arguments: List[str]) -> str:
         """Execute a function
 
@@ -146,16 +138,18 @@ When you search the web via the "search" function, you must call it minimum once
 if __name__ == "__main__":
     # Warning: "gpt-4-0613" costs a lot compared to "gpt-3.5-turbo-0613"
     # Default model: "gpt-3.5-turbo-0613"
-    models = ["gpt-3.5-turbo-0613", "gpt-4-0613"]
+    models = ["gpt-3.5-turbo-0613", "gpt-4-0613", "gpt-3.5-turbo", "gpt-4"]
     from os import getenv
     API_KEY = getenv("OPENAI_API_KEY")
     if not API_KEY:
         print("Please set the OPENAI_API_KEY environment variable")
         exit()
-    bot = ChatBot(API_KEY, functions.list, models[0])
+    bot = ChatBot(API_KEY, functions.list, models[2])
     while True:
         try:
             message = input("You: ")
             print(f"Bot: {bot.user_chat(message)}")
         except KeyboardInterrupt:
             bot.exit_conversation()
+
+    # TODO: Convert the program to a web app using Flask
